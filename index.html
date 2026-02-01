@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+  <meta name="description" content="Investmentos e Aquisições" />
+  <meta name="author" content="Paulo Sousa" />
+
+  <title>Ocorrências</title>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="templates/favicon.png"/>
+
+  <!-- CSS -->
+  
+  <!-- BOOTSTRAP STYLE CSS -->
+  <link href="vendors/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- GLOBAL STYLE CSS -->
+  <link href="global/css/styles.css" rel="stylesheet" type="text/css">
+  <!-- FONT-AWESOME -->
+  <link href="vendors/fonts/all.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+    body  {
+      background-image: url('global/imagens/bgPages.jpg');
+      background-size: cover;
+    }
+    </style>
+
+</head>
+<body>
+    
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Registo de Ocorrências</a>
+
+    <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-white">Copyright &copy; Paulo Sousa 2026</div>
+      </div>
+    </div>
+
+    <!-- Logged -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Convidado</a><div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Login</a>
+            <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+    
+  <div class="card-box">
+      <div class="card-body">
+          <div class="container-fluid">
+              <div class="row">
+                <!-- Processos, Obras e Serviços -->
+                <div class="col col-lg-3">
+                  <div class="col-lg-12 col-sm-3">
+                      <div class="card-box bg-blue">
+                          <div class="inner"><h3>Processos</h3><p>Detalhes</p></div>
+                          <div class="icon"><i class="fa fa-project-diagram"></i></div>
+                          <a href="producao/reports/ocorrenciaDashboard.html" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                      </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-3">
+                      <div class="card-box bg-dark">
+                          <div class="inner"><h3>Obras</h3><p>Detalhes</p></div>
+                          <div class="icon"><i class="text-light fa fa-person-digging"></i></div>
+                          <a href="#" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                      </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-3">
+                      <div class="card-box bg-green">
+                          <div class="inner"><h3>Serviços</h3><p>Detalhes</p></div>
+                          <div class="icon "><i class="fa fa-cogs"></i></div>
+                          <a href="#" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                      </div>
+                  </div>
+                </div>
+                <!-- Vistorias [Fornecedores] -->
+                <div class="col col-lg-3">
+                  <div class="col-lg-12 col-sm-3">
+                    <div class="card-box bg-green">
+                        <div class="inner"><h3>Vistorias</h3><p>Fornecedores</p></div>
+                        <div class="icon"><i class="fa fa-cogs"></i></div>
+                        <a href="producao/fornecedores/main.html" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <!-- Métricas [Estatísticas] -->
+                  <div class="col-lg-12 col-sm-3">
+                      <div class="card-box bg-red">
+                          <div class="inner"><h3>Métricas</h3><p>Indicadores</p></div>
+                          <div class="icon"><i class="fa fa-chart-line"></i></div>
+                          <a href="#" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                      </div>
+                  </div>
+                </div>
+                <!-- Orçamento e Candidaturas -->
+                <div class="col col-lg-3">
+                  <div class="col-lg-12 col-sm-3">
+                    <div class="card-box bg-orange">
+                        <div class="inner"><h3>Candidaturas</h3><p>Histórico</p></div>
+                        <div class="icon"><i class="fa fa-euro"></i></div>
+                        <a href="producao/candidaturas/candidaturasDashboard.html" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                  <div class="col-lg-12 col-sm-3">
+                    <div class="card-box bg-red">
+                        <div class="inner"><h3>Orçamento</h3><p>Ano Corrente</p></div>
+                        <div class="icon"><i class="fa fa-euro"></i></div>
+                        <a href="#" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Fornecedores -->
+                <div class="col col-lg-3">
+                  <div class="col-lg-12 col-sm-3">
+                    <div class="card-box bg-blue">
+                        <div class="inner"><h3>Setores Especiais</h3>
+                          <a href="#"
+                          target="_blank" >
+                          <p class="text-white">Listagem</p></a>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <a href="#" class="card-box-footer">Aceder <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <!--<script src="vendors/jquery/jquery.js"></script>-->
+  <script src="vendors/jquery/jquery.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="vendors/fonts/all.min.js"></script>
+
+
+</body>
+
+</html>
