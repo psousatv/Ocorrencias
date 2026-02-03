@@ -6,13 +6,13 @@ $myHost = "localhost";
 $user = "tv";
 $password = "taviraverde";
 //Bases de Dados
-$myDatabase = "compras";
-$pgDatabase = "cadastro";
+$myDatabase = "ocorrencias";
+$pgDatabase = "ocorrencias";
 
 //PDO - Connection to MySQL
-$myConn = new PDO("mysql:host=$myHost;dbname=$myDatabase", $user, $password);
+$ocorrenciasConn = new PDO("mysql:host=$myHost;dbname=$myDatabase", $user, $password);
 
-if($myConn === false) {
+if($ocorrenciasConn === false) {
     echo "Ocorreu um erro com a conexão";
     exit();
 }

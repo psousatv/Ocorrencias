@@ -1,0 +1,57 @@
+<!-- Botão para abrir o modal -->
+<button class="btn btn-primary" onclick="abrirModal()">Inserir Ocorrência</button>
+
+<!-- Modal -->
+<div class="modal" id="modalOcorrencia" tabindex="-1" style="display:none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nova Ocorrência</h5>
+        <button type="button" class="btn-close" onclick="fecharModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formOcorrencia">
+          <div class="mb-2">
+            <label>Local</label>
+            <input type="text" id="local" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Executar</label>
+            <input type="text" id="executar" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Detetado</label>
+            <input type="date" id="detetado" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Comunicado</label>
+            <input type="date" id="comunicado" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Concluido</label>
+            <input type="date" id="concluido" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Estado</label>
+            <input type="text" id="estado" class="form-control">
+          </div>
+          <div class="mb-2">
+            <label>EJR</label>
+            <input type="text" id="ejr" class="form-control">
+          </div>
+          <div class="mb-2">
+            <label>Coordenadas (URL)</label>
+            <input type="url" id="coordenadas" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="inserirOcorrencia()">Inserir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/ocorrenciasCrud.js"></script>
