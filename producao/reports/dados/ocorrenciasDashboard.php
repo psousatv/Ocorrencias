@@ -11,7 +11,7 @@ try {
         oc_reporte AS reporte,
         oc_detetado AS detetado,
         oc_comunicado AS comunicado,
-        oc_concluido AS concluido,
+        oc_concluido AS concluido,git status
         oc_coordenadas AS coordenadas
         FROM ocorrencias
         ORDER BY estado";
