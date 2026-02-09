@@ -1,7 +1,7 @@
 /******************************************************************
  * CONFIGURAÇÕES GERAIS
  ******************************************************************/
-const API_URL = "dados/ocorrenciasDashboard.php";
+const API_URL = "dados/anomaliasDados.php";
 
 const LIMITES = {
   diasConforme: 30,
@@ -68,12 +68,13 @@ function preencherTabela() {
     // Calcular diferença de dias entre concluído e comunicado
     let diffDias = 0;
     if (d.detetado) {
+
       // Converter a data de 'comunicado' para o formato de data
-      const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
+      //const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
       
       // Se 'concluido' estiver vazio, considerar a data de hoje
-      const concluido = d.concluido ? 
-        new Date(d.concluido.split("-").reverse().join("-")) : new Date();
+      //const concluido = d.concluido ? 
+      //  new Date(d.concluido.split("-").reverse().join("-")) : new Date();
       
       // Formatar a data de hoje no mesmo formato (yyyy-mm-dd) que comunicado e concluído
       //const hoje = new Date();
@@ -83,14 +84,14 @@ function preencherTabela() {
       //const dataFinal = d.concluido ? concluido : hojeFormatada;
 
       // Calcular a diferença de dias entre 'concluido' e 'comunicado'
-      diffDias = (concluido - comunicado) / (1000 * 60 * 60 * 24);     
+      diffDias = (d.comunicado - d.detetado) / (1000 * 60 * 60 * 24);     
       
       // Exibir log para depuração (opcional)
-      console.log("Data Detetado:", d.detetado);
-      console.log("Data Comunicado:", d.comunicado);
-      console.log("Data Concluído:", concluido);
-      console.log("Diferença de dias:", diffDias);
-      console.log("Estado:", d.estado);
+      //console.log("Data Detetado:", d.detetado);
+      //console.log("Data Comunicado:", d.comunicado);
+      //console.log("Data Concluído:", concluido);
+      //console.log("Diferença de dias:", diffDias);
+      //console.log("Estado:", d.estado);
 
      }
      
@@ -139,34 +140,6 @@ function preencherTabela() {
 }
 
 /******************************************************************
- * CRUD LOCAL
- ******************************************************************/
-function adicionarLinha() {
-  abrirModal();
-  renderizarTudo();
-}
-
-function editarLinha(index) {
-  const atual = dados[index].valor;
-  const novoValor = prompt("Novo valor:", atual);
-  if (novoValor !== null && !isNaN(novoValor)) {
-    dados[index].valor = Number(novoValor);
-    renderizarTudo();
-  }
-}
-
-function apagarLinha(index) {
-  if (confirm("Apagar este registo?")) {
-    dados.splice(index, 1);
-    renderizarTudo();
-  }
-}
-
-function enviarEmail (index){
-  prompt("Em Tratamento");
-};
-
-/******************************************************************
  * GAUGES (CHART.JS) ATUALIZADO COM CORES POR DIFERENÇA DE DIAS
  ******************************************************************/
 function atualizarGauges() {
@@ -180,9 +153,9 @@ function atualizarGauges() {
   let mediaDiasAtivos = 0;
   if (numeroAtivos > 0) {
     const somaDias = ativosArray.reduce((soma, d) => {
-      const detetado = new Date(d.detetado.split("-").reverse().join("-"));
-      const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
-      const diff = (comunicado - detetado) / (1000 * 60 * 60 * 24);
+      //const detetado = new Date(d.detetado.split("-").reverse().join("-"));
+      //const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
+      const diff = (d.comunicado - d.detetado) / (1000 * 60 * 60 * 24);
       return soma + diff;
     }, 0);
     mediaDiasAtivos = somaDias / numeroAtivos;
@@ -196,9 +169,9 @@ function atualizarGauges() {
   let mediaDiasTratados = 0;
   if (numeroTratados > 0) {
     const somaDias = tratadosArray.reduce((soma, d) => {
-      const detetado = new Date(d.detetado.split("-").reverse().join("-"));
-      const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
-      const diff = (comunicado - detetado) / (1000 * 60 * 60 * 24);
+      //const detetado = new Date(d.detetado.split("-").reverse().join("-"));
+      //const comunicado = new Date(d.comunicado.split("-").reverse().join("-"));
+      const diff = (d.comunicado - d.detetado) / (1000 * 60 * 60 * 24);
       return soma + diff;
     }, 0);
     mediaDiasTratados = somaDias / numeroTratados;
@@ -267,83 +240,32 @@ function corPorDias(dias) {
 
 
 /******************************************************************
- * FUNÇÕES PARA ABRIR E FECHAR O MODAL
+ * CRUD LOCAL
  ******************************************************************/
-// Funções para abrir e fechar modal
-function abrirModal() {
-  document.getElementById("formOcorrencia").reset();
-  document.getElementById("modalOcorrencia").style.display = "block";
-}
+//function adicionarLinha() {
+  //abrirModal();
+//  renderizarTudo();
+//}
 
-function fecharModal() {
-  document.getElementById("modalOcorrencia").style.display = "none";
-  document.getElementById("formOcorrencia").reset();
-
-}
-
-/******************************************************************
- * VALIDAR DADOS E ADICIONAR AO SERVIDOR
- ******************************************************************/
-async function validarEAdicionar() {
-  // Campos a recolher do formulário
-const campos = ["local", "executar", "detetado", "comunicado", "concluido", "ejr", "coordenadas"];
-const obrigatorios = ["local", "executar", "estado", "detetado", "comunicado", "concluido"];
-
-let novaOcorrencia = {};
-let faltando = [];
-
-// Recolha + validação
-campos.forEach(campo => {
-  const el = document.getElementById(campo);
-  const valor = el ? el.value.trim() : "";
-  novaOcorrencia[campo] = valor;
-
-  if (obrigatorios.includes(campo) && !valor) {
-    faltando.push(campo);
+function editarLinha(index) {
+  const atual = dados[index].valor;
+  const novoValor = prompt("Novo valor:", atual);
+  if (novoValor !== null && !isNaN(novoValor)) {
+    dados[index].valor = Number(novoValor);
+    renderizarTudo();
   }
-});
-
-// ❌ Falhou validação
-if (faltando.length > 0) {
-  alert("Faltam preencher os campos: " + faltando.join(", "));
-  return;
 }
 
-console.log("Nova ocorrência:", novaOcorrencia);
+//function apagarLinha(index) {
+//  if (confirm("Apagar este registo?")) {
+//    dados.splice(index, 1);
+//    renderizarTudo();
+//  }
+//}
 
-// 📡 Envio para o servidor
-try {
-  // Enviar dados para o servidor via API (PHP)
-  const response = await fetch("dados/ocorrenciasCRUD.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(novaOcorrencia)
-  });
-
-  const result = await response.json();
-
-  // Se a resposta não for OK, gerar um erro
-  if (!response.ok) {
-    throw new Error(result.erro || "Erro desconhecido ao adicionar ocorrência");
-  }
-
-  // ✅ Se a resposta foi positiva, atualizar dados locais
-  dados.push(novaOcorrencia);
-  renderizarTudo();
-
-  // Fechar modal
-  fecharModal();
-
-  // Alerta de sucesso
-  alert(result.mensagem || "Ocorrência adicionada com sucesso!");
-
-} catch (erro) {
-  // Caso ocorra um erro ao tentar adicionar
-  console.error(erro);
-  alert("Erro ao adicionar ocorrência. Tente novamente.");
-}
-}
-
+//function enviarEmail (index){
+//  prompt("Em Tratamento");
+//};
 
 
 

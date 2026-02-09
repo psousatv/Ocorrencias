@@ -1,27 +1,27 @@
 <?php
-include "../../../global/config/ocorrenciasConn.php";
+include "../../../global/config/anomaliasConn.php";
 
 try {
     // Defina a consulta SQL
-    $qryOcorrencias = "SELECT
-        oc_check,
-        oc_ejr AS ejr,
-        oc_estado AS estado,
-        oc_local AS 'local',
-        oc_reporte AS reporte,
-        oc_detetado AS detetado,
-        oc_comunicado AS comunicado,
-        oc_concluido AS concluido,git status
-        oc_coordenadas AS coordenadas
-        FROM ocorrencias
-        ORDER BY estado";
+    $qryAnomalias = "SELECT
+        an_check,
+        an_local AS 'local',
+        an_reporte AS reporte,
+        an_ejr AS ejr,
+        an_detetado AS detetado,
+        an_comunicado AS comunicado,
+        an_concluido AS concluido,
+        an_estado AS estado,
+        an_coordenadas AS coordenadas
+        FROM anomalias
+        ORDER BY an_estado";
 
     // Prepare a consulta
-    $stmt = $ocorrenciasConn->prepare($qryOcorrencias);
+    $stmt = $anomaliasConn->prepare($qryAnomalias);
     
     // Se falhar ao preparar o statement
     if (!$stmt) {
-        throw new Exception("Erro ao preparar a consulta: " . implode(":", $ocorrenciasConn->errorInfo()));
+        throw new Exception("Erro ao preparar a consulta: " . implode(":", $anomaliasConn->errorInfo()));
     }
 
     // Execute a consulta
@@ -33,16 +33,16 @@ try {
     }
 
     // Obtenha os dados como um array associativo
-    $dadosOcorrencias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $dadosAnomalias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Verifique se os dados foram retornados
-    if (!$dadosOcorrencias) {
+    if (!$dadosAnomalias) {
         throw new Exception("Nenhum dado encontrado na consulta.");
     }
 
     // Defina o cabeçalho para JSON e envie a resposta
     header('Content-Type: application/json');
-    echo json_encode($dadosOcorrencias);
+    echo json_encode($dadosAnomalias);
 
 } catch (Exception $e) {
     // Em caso de erro, capture a exceção e exiba a mensagem
